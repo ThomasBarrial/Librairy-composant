@@ -1,20 +1,22 @@
 import "minireset.css";
+import { disableGlobalArgTypes } from "../helpers/storybook";
 import "../styles/global.css";
 import "../styles/tokens.css";
 
-const styles = {
+const getStyles = ({ __sb }) => ({
   display: "flex",
-  flexDirection: "column",
-  maxHeight: "auto",
+  flexDirection: __sb?.fd || "column",
+  maxHeight: __sb?.mh || "auto",
   justifyContent: "flex-start",
-  flexWrap: "wrap",
+  flexWrap: __sb?.fw || "wrap",
   height: "100%",
   gap: "10px 30px",
-};
+});
 
 export const decorators = [
   (Story) => (
-    <div style={styles}>
+    // disableGlobalArgTypes(parameters)("getStyles") || (
+    <div style={getStyles(parameters)}>
       <Story />
     </div>
   ),

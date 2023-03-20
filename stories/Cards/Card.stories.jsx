@@ -1,8 +1,14 @@
-import React from "react";
-
 import { Card } from "../../components/Cards/Card";
 import { options } from "../../components/Cards/constant";
+import styles from "../../components/Cards/Card.module.css";
+import {
+  getListTemplate,
+  getOptionsArgTypes,
+  getTemplate,
+} from "../../helpers/storybook";
 
+const Template = getTemplate(Card, styles);
+const ListTemplates = getListTemplate(Card, styles);
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: "Cards/Card",
@@ -13,24 +19,17 @@ export default {
   },
 
   argTypes: {
-    color: {
-      description: "**options**",
-      table: {
-        type: {
-          summary: options.colors.map((option) => `${option}`).join(" | "),
-        },
-      },
-      control: {
-        type: "select",
-        options: options.colors,
-      },
-    },
+    color: getOptionsArgTypes(options.colors),
+    size: getOptionsArgTypes(options.sizes),
   },
+  // parameters: {
+  //   __sb: { fd: "row", fw: "no-wrap" },
+  // },
 };
 
-const Template = (args) => <Card {...args} />;
-const ListTemplates = ({ items, ...args }) =>
-  items.map((item, index) => <Card key={index} {...args} {...item} />);
+// const Template = (args) => <Card {...args} />;
+// const ListTemplates = ({ items, ...args }) =>
+//   items.map((item, index) => <Card key={index} {...args} {...item} />);
 
 export const Default = Template.bind({});
 

@@ -3,7 +3,7 @@
   width: 100%;
   align-items: center;
   padding: 12px;
-  border: 1px solid tomato;
+  border: 1px solid transparent;
   border-radius: 10px;
   box-shadow: var(--box-shadow-sm);
   transition: box-shadow 0.2s ease-in;
